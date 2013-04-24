@@ -38,6 +38,7 @@ if(isset($_POST['submit'])){
 					'password'   => $gaPassword,
 					'requestUrl' => $gaUrl,
 	);
+        
 
 	// Create a new GAnalytics object
 	$ga = new GAnalytics($config);
