@@ -99,17 +99,21 @@ class GAnalytics
         }
 
         $headers = array("Authorization: GoogleLogin auth=$this->_auth");
+        echo "wow $this->_auth  wow";
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        
+        //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        
         $output = curl_exec($ch);
         $info = curl_getinfo($ch);
         curl_close($ch);
 
         if($info['http_code'] != 200) {
-            throw new Exception('Request failed with message: ' . $output, $info['http_code']);
+            throw new Exception('Request failed with: ' . $output, $info['http_code']);
         }
 
         return $output;
